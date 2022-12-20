@@ -13,9 +13,11 @@ usersRoutes.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
+      user: Joi.string().required(),
+      password: Joi.string().required(),
+      password_confirmation: Joi.string().required().valid(Joi.ref('password')),
     },
   }),
-  ensureAuthenticated,
   usersController.create,
 );
 usersRoutes.get('/', ensureAuthenticated, usersController.index);

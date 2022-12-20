@@ -19,6 +19,7 @@ export class BullBackendJobsProvider implements IBackendJobsProvider {
       bull: new Queue(job.key, {
         redis: redisConfig,
         limiter: job.limiter || undefined,
+        defaultJobOptions: job?.defaultJobOptions || undefined,
       }),
       name: job.key,
       handle: job.handle,

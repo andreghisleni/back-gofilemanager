@@ -1,4 +1,4 @@
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -18,6 +18,6 @@ export class ProfileFirstController {
       old_password,
     });
 
-    return res.json(classToClass(user));
+    return res.json(instanceToInstance(user));
   }
 }

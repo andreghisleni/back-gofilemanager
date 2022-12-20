@@ -1,4 +1,4 @@
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -12,7 +12,7 @@ export class ProfileController {
       user_id: req.user.id,
     });
 
-    return res.json(classToClass(user));
+    return res.json(instanceToInstance(user));
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
@@ -27,6 +27,6 @@ export class ProfileController {
       old_password,
     });
 
-    return res.json(classToClass(user));
+    return res.json(instanceToInstance(user));
   }
 }

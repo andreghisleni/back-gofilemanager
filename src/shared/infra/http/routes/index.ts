@@ -1,5 +1,8 @@
 import { Router } from 'express';
 
+import { backupsRouter } from '@modules/backups/infra/http/routes/backups.routes';
+import { categoriesRouter } from '@modules/transactions/infra/http/routes/categories.routes';
+import { transactionsRouter } from '@modules/transactions/infra/http/routes/transactions.routes';
 import { passwordRouter } from '@modules/users/infra/http/routes/password.routes';
 import { profileRouter } from '@modules/users/infra/http/routes/profile.routes';
 import { sessionsRouter } from '@modules/users/infra/http/routes/sessions.routes';
@@ -11,5 +14,10 @@ routes.use('/users', usersRoutes);
 routes.use('/sessions', sessionsRouter);
 routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
+
+routes.use('/transactions', transactionsRouter);
+routes.use('/categories', categoriesRouter);
+
+routes.use('/backups', backupsRouter);
 
 export { routes };

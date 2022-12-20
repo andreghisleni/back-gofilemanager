@@ -1,4 +1,4 @@
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -18,7 +18,7 @@ export class SessionsController {
       password,
     });
 
-    return res.json({ user: classToClass(user), token, refreshToken });
+    return res.json({ user: instanceToInstance(user), token, refreshToken });
   }
 
   async update(req: Request, res: Response): Promise<Response> {

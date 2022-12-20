@@ -1,26 +1,28 @@
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateUserByAnotherUserService } from '@modules/users/services/CreateUserByAnotherUserService';
+import { CreateUserService } from '@modules/users/services/CreateUserService';
 import { FindAllUsersService } from '@modules/users/services/FindAllUsersService';
 
 export class UsersController {
   async create(req: Request, res: Response): Promise<Response> {
-    const { name, email } = req.body;
+    const { name, email, user: userName, password } = req.body;
 
-    const createUser = container.resolve(CreateUserByAnotherUserService);
+    const createUser = container.resolve(CreateUserService);
     const user = await createUser.execute({
       name,
       email,
+      password,
+      user: userName,
     });
 
-    return res.json(classToClass(user));
+    return res.json(instanceToInstance(user));
   }
 
   async index(req: Request, res: Response): Promise<Response> {
     const findAllUsers = container.resolve(FindAllUsersService);
     const users = await findAllUsers.execute();
-    return res.json(classToClass(users));
+    return res.json(instanceToInstance(users));
   }
 }

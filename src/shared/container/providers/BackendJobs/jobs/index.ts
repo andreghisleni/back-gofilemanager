@@ -1,2 +1,2 @@
 export { default as SendEmail } from './SendEmail';
-// export { default as SendEmail2 } from './SendEmail2';
+export { default as DeleteFile } from './DeleteFile';
