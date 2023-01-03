@@ -32,6 +32,6 @@ describe('FindAllTransactions', () => {
     });
 
     const transactions = await findAllTransactions.execute();
-    expect(transactions).toHaveLength(2);
+    expect(transactions.transactions).toHaveLength(2);
   });
 });

@@ -36,7 +36,7 @@ jobs:
 
       #executar tests
       - name: Run test
-        run: yarn test
+        run: yarn test:jest
         env:
           CI: true
 
