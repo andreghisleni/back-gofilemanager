@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: 14.x
+          node-version: 18.x
 
       #instalar as dependencias com yarn cache
       - name: Get yarn cache directory path
@@ -68,3 +68,15 @@ jobs:
             yarn
             ./node_modules/.bin/typeorm migration:run
             pm2 restart ${{ secrets.PM2_NAME }}
+
+      # Send message in telegram
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            Repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
