@@ -13,7 +13,7 @@ import { ITransactionsRepository } from '../repositories/ITransactionsRepository
 interface IRequest {
   title: string;
   value: number;
-  type: 'income' | 'outcome' | 'initvalue' | 'transfer';
+  type: 'income' | 'outcome' | 'initvalue' | 'transfer' | string;
   category_id: string;
   description: string;
   accounts: {
