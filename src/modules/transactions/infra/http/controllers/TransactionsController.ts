@@ -7,7 +7,7 @@ import { FindAllTransactionsService } from '@modules/transactions/services/FindA
 
 export class TransactionsController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { title, value, type, category_id, description } = req.body;
+    const { title, value, type, category_id, description, accounts } = req.body;
     const createTransaction = container.resolve(CreateTransactionService);
     const transaction = await createTransaction.execute({
       title,
@@ -15,6 +15,7 @@ export class TransactionsController {
       type,
       category_id,
       description,
+      accounts,
     });
     return res.json(instanceToInstance(transaction));
   }

@@ -7,9 +7,12 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 import uploadConfig from '@config/upload';
+
+import { AccountTransaction } from '@modules/accounts/infra/typeorm/entities/AccountTransaction';
 
 import { Category } from './Category';
 
@@ -25,7 +28,7 @@ export class Transaction {
   description: string;
 
   @Column()
-  type: 'income' | 'outcome' | 'initvalue';
+  type: 'income' | 'outcome' | 'initvalue' | 'transfer';
 
   @Column('float')
   value: number;
@@ -39,6 +42,12 @@ export class Transaction {
   @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
+
+  @OneToMany(
+    () => AccountTransaction,
+    accountTransaction => accountTransaction.transaction,
+  )
+  accountTransactions: AccountTransaction[];
 
   @CreateDateColumn()
   created_at: Date;

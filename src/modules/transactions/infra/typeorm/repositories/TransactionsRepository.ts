@@ -26,6 +26,11 @@ export class TransactionsRepository implements ITransactionsRepository {
       order: {
         created_at: 'DESC',
       },
+      relations: [
+        // 'category',
+        'accountTransactions',
+        'accountTransactions.account',
+      ],
     });
     return findTransactions;
   }

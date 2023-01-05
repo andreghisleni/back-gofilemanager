@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { accountsRouter } from '@modules/accounts/infra/http/routes/accounts.routes';
 import { backupsRouter } from '@modules/backups/infra/http/routes/backups.routes';
 import { categoriesRouter } from '@modules/transactions/infra/http/routes/categories.routes';
 import { transactionsRouter } from '@modules/transactions/infra/http/routes/transactions.routes';
@@ -17,6 +18,7 @@ routes.use('/profile', profileRouter);
 
 routes.use('/transactions', transactionsRouter);
 routes.use('/categories', categoriesRouter);
+routes.use('/accounts', accountsRouter);
 
 routes.use('/backups', backupsRouter);
 

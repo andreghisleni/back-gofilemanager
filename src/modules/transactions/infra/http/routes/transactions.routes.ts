@@ -24,9 +24,17 @@ transactionsRouter.post(
     [Segments.BODY]: {
       title: Joi.string().required(),
       value: Joi.number().required(),
-      type: Joi.string().valid('income', 'outcome', 'initvalue').required(),
+      type: Joi.string()
+        .valid('income', 'outcome', 'initvalue', 'transfer')
+        .required(),
       category_id: Joi.string().uuid().required(),
       description: Joi.string().required(),
+      accounts: Joi.array().items(
+        Joi.object({
+          account_id: Joi.string().uuid().required(),
+          value: Joi.number().required(),
+        }),
+      ),
     },
   }),
   transactionsController.create,

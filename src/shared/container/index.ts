@@ -4,6 +4,10 @@ import '@modules/users/providers';
 
 import './providers';
 
+import { AccountsRepository } from '@modules/accounts/infra/typeorm/repositories/AccountsRepository';
+import { AccountTransactionsRepository } from '@modules/accounts/infra/typeorm/repositories/AccountTransactionsRepository';
+import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
+import { IAccountTransactionsRepository } from '@modules/accounts/repositories/IAccountTransactionsRepository';
 import { CategoriesRepository } from '@modules/transactions/infra/typeorm/repositories/CategoriesRepository';
 import { TransactionsRepository } from '@modules/transactions/infra/typeorm/repositories/TransactionsRepository';
 import { ICategoriesRepository } from '@modules/transactions/repositories/ICategoriesRepository';
@@ -31,4 +35,14 @@ container.registerSingleton<ITransactionsRepository>(
 container.registerSingleton<ICategoriesRepository>(
   'CategoriesRepository',
   CategoriesRepository,
+);
+
+container.registerSingleton<IAccountsRepository>(
+  'AccountsRepository',
+  AccountsRepository,
+);
+
+container.registerSingleton<IAccountTransactionsRepository>(
+  'AccountTransactionsRepository',
+  AccountTransactionsRepository,
 );
