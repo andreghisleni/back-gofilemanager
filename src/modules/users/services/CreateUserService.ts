@@ -28,6 +28,8 @@ export class CreateUserService {
     user: userName,
     password,
   }: IRequest): Promise<User> {
+    await this.usersRepository.connect();
+
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

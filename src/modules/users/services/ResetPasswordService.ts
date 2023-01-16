@@ -25,6 +25,9 @@ export class ResetPasswordService {
   ) { } // eslint-disable-line
 
   public async execute({ token, password }: IRequest): Promise<void> {
+    await this.usersRepository.connect();
+    await this.userTokensRepository.connect();
+
     const userToken = await this.userTokensRepository.findByToken(token);
 
     if (!userToken) {

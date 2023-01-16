@@ -2,6 +2,7 @@ import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
 import { User } from '../infra/typeorm/entities/User';
 
 export interface IUsersRepository {
+  connect(): Promise<void>;
   findById(id: string): Promise<User | undefined>;
   findAll(): Promise<User[]>;
   findByUser(user: string): Promise<User | undefined>;

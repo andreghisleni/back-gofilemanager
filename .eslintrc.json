@@ -36,6 +36,7 @@
         ]
       }
     ],
+    "no-use-before-define": "off",
     "no-nested-ternary": "off",
     "import/prefer-default-export": "off",
     "camelcase": "off",

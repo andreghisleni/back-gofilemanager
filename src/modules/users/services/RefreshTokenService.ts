@@ -34,6 +34,8 @@ export class RefreshTokenService {
   ) { }// eslint-disable-line
 
   public async execute({ refreshToken }: IRequest): Promise<IResponse> {
+    await this.usersRepository.connect();
+
     const { secret, expiresIn, expiresInRefresh } = auth.jwt;
 
     try {

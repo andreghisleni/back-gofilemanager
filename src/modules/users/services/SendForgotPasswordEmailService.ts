@@ -25,6 +25,9 @@ export class SendForgotPasswordEmailService {
   ) { } // eslint-disable-line
 
   public async execute({ email }: IRequest): Promise<void> {
+    await this.usersRepository.connect();
+    await this.userTokensRepository.connect();
+
     const user = await this.usersRepository.findByEmail(email);
     if (!user) {
       throw new AppError('User does not exists.');

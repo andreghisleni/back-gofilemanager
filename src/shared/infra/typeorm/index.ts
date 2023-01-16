@@ -1,3 +1,3 @@
-import { createConnections } from 'typeorm';
+import { createConnection } from './createConnection';
 
-createConnections();
+export const dataSource = createConnection();

@@ -17,6 +17,8 @@ export class ShowProfileService {
   ) { }// eslint-disable-line
 
   public async execute({ user_id }: IRequest): Promise<User> {
+    await this.usersRepository.connect();
+
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {

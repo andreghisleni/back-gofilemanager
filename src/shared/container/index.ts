@@ -4,14 +4,13 @@ import '@modules/users/providers';
 
 import './providers';
 
-import { AccountsRepository } from '@modules/accounts/infra/typeorm/repositories/AccountsRepository';
-import { AccountTransactionsRepository } from '@modules/accounts/infra/typeorm/repositories/AccountTransactionsRepository';
-import { IAccountsRepository } from '@modules/accounts/repositories/IAccountsRepository';
-import { IAccountTransactionsRepository } from '@modules/accounts/repositories/IAccountTransactionsRepository';
-import { CategoriesRepository } from '@modules/transactions/infra/typeorm/repositories/CategoriesRepository';
-import { TransactionsRepository } from '@modules/transactions/infra/typeorm/repositories/TransactionsRepository';
-import { ICategoriesRepository } from '@modules/transactions/repositories/ICategoriesRepository';
-import { ITransactionsRepository } from '@modules/transactions/repositories/ITransactionsRepository';
+import { ActionsRepository } from '@modules/files/infra/typeorm/repositories/ActionsRepository';
+import { FileParentsRepository } from '@modules/files/infra/typeorm/repositories/FileParentsRepository';
+import { FilesRepository } from '@modules/files/infra/typeorm/repositories/FilesRepository';
+import { IActionsRepository } from '@modules/files/repositories/IActionsRepository';
+import { IFileParentsRepository } from '@modules/files/repositories/IFileParentsRepository';
+import { IFilesRepository } from '@modules/files/repositories/IFilesRepository';
+//
 import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
 import { UserTokensRepository } from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
@@ -28,21 +27,16 @@ container.registerSingleton<IUserTokensRepository>(
   UserTokensRepository,
 );
 
-container.registerSingleton<ITransactionsRepository>(
-  'TransactionsRepository',
-  TransactionsRepository,
+container.registerSingleton<IFilesRepository>(
+  'FilesRepository',
+  FilesRepository,
 );
-container.registerSingleton<ICategoriesRepository>(
-  'CategoriesRepository',
-  CategoriesRepository,
-);
-
-container.registerSingleton<IAccountsRepository>(
-  'AccountsRepository',
-  AccountsRepository,
+container.registerSingleton<IActionsRepository>(
+  'ActionsRepository',
+  ActionsRepository,
 );
 
-container.registerSingleton<IAccountTransactionsRepository>(
-  'AccountTransactionsRepository',
-  AccountTransactionsRepository,
+container.registerSingleton<IFileParentsRepository>(
+  'FileParentsRepository',
+  FileParentsRepository,
 );

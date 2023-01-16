@@ -27,6 +27,8 @@ export class CreateUserByAnotherUserService {
   ) { } // eslint-disable-line
 
   public async execute({ name, email }: IRequest): Promise<User> {
+    await this.usersRepository.connect();
+
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

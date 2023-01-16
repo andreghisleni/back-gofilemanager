@@ -34,6 +34,8 @@ export class AuthenticateUserService {
     user: userName,
     password,
   }: IRequest): Promise<IResponse> {
+    await this.usersRepository.connect();
+
     const user = await this.usersRepository.findByUser(userName);
     if (!user) {
       throw new AppError('Incorrect user/password combination.', 401);

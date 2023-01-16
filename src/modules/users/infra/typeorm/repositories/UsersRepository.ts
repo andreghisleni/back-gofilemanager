@@ -1,4 +1,5 @@
-import { Repository, getRepository } from 'typeorm';
+import { Repository } from 'typeorm';
+import { useDataSource } from 'typeorm-extension';
 
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
@@ -8,15 +9,14 @@ import { User } from '../entities/User';
 export class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
 
-  constructor() {
-    this.ormRepository = getRepository(User);
+  public async connect(): Promise<void> {
+    this.ormRepository = (await useDataSource()).getRepository(User);
   }
-
   public async findById(id: string): Promise<User | undefined> {
     const findUser = await this.ormRepository.findOne({
       where: { id },
     });
-    return findUser;
+    return findUser || undefined;
   }
 
   public async findAll(): Promise<User[]> {
@@ -28,14 +28,14 @@ export class UsersRepository implements IUsersRepository {
     const findUser = await this.ormRepository.findOne({
       where: [{ user }],
     });
-    return findUser;
+    return findUser || undefined;
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
     const findUser = await this.ormRepository.findOne({
       where: [{ email }],
     });
-    return findUser;
+    return findUser || undefined;
   }
 
   public async create({

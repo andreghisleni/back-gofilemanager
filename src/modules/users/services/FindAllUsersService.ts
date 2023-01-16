@@ -11,6 +11,8 @@ export class FindAllUsersService {
   ) { }// eslint-disable-line
 
   public async execute(): Promise<User[]> {
+    await this.usersRepository.connect();
+
     const user = await this.usersRepository.findAll();
 
     return user;

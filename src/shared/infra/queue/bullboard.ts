@@ -15,6 +15,7 @@ import { container } from 'tsyringe';
 import 'express-async-errors';
 
 import { rateLimiter } from '../http/middlewares/rateLimiter';
+import { dataSource } from '../typeorm/index';
 import { Queue } from './queue';
 
 const { queues } = container.resolve(Queue);
@@ -35,6 +36,11 @@ createBullBoard({
 app.use('/ui', serverAdapter.getRouter());
 
 const port = process.env.PORT_BULL || 3334;
-app.listen(port, () => {
-  console.log(`🚀 Server started on port ${port}!`); // eslint-disable-line
+
+dataSource.then(data => {
+  if (data.isInitialized) {
+    app.listen(port, () => {
+      console.log(`🚀 BullBoard server started on port ${port}!`);// eslint-disable-line
+    });
+  }
 });

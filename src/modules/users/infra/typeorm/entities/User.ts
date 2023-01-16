@@ -8,6 +8,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
+import { File } from '@modules/files/infra/typeorm/entities/File';
+
 import { UserToken } from './UserToken';
 
 @Entity('users')
@@ -41,4 +43,10 @@ export class User {
     // eager: true,
   })
   tokens: UserToken[];
+
+  @OneToMany(() => File, file => file.from)
+  fromFiles: File[];
+
+  @OneToMany(() => File, file => file.to)
+  toFiles: File[];
 }

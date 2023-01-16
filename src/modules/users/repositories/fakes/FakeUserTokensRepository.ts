@@ -7,6 +7,8 @@ import { IUserTokensRepository } from '../IUserTokensRepository';
 export class FakeUserTokensRepository implements IUserTokensRepository {
   private userTokens: UserToken[] = [];
 
+  public async connect(): Promise<void> { }// eslint-disable-line
+
   public async generate(user: User): Promise<UserToken> {
     const userToken = new UserToken();
 

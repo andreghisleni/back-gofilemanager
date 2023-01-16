@@ -7,6 +7,8 @@ import { IUsersRepository } from '../IUsersRepository';
 export class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
+  public async connect(): Promise<void> { }// eslint-disable-line
+
   public async findById(id: string): Promise<User | undefined> {
     const findUser = this.users.find(user => user.id === id);
     return findUser;

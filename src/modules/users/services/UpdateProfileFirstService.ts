@@ -37,6 +37,8 @@ export class UpdateProfileFirstService {
     password,
     old_password,
   }: IRequest): Promise<User> {
+    await this.usersRepository.connect();
+
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
