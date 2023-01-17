@@ -14,7 +14,7 @@ export class S3StorageProvider implements IStorageProvider {
 
   constructor() {
     this.client = new aws.S3({
-      region: uploadConfig.config.aws.region,
+      region: 'us-east-2', // uploadConfig.config.aws.region,
     });
   }
 

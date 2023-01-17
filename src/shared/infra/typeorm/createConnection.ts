@@ -7,10 +7,10 @@ export const createConnection = async (
 ): Promise<DataSource> => {
   try {
     const folder = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
-    const ssl =
-      process.env.NODE_ENV === 'production'
-        ? { rejectUnauthorized: false }
-        : undefined;
+    // const ssl =
+    //   process.env.NODE_ENV === 'production'
+    //     ? { rejectUnauthorized: false }
+    //     : undefined;
 
     const dataSource = new DataSource({
       name: database,
@@ -20,12 +20,12 @@ export const createConnection = async (
       username: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASS || 'docker',
       database,
-      ssl,
+      // ssl,
       entities: [`./${folder}/modules/**/infra/typeorm/entities/*{.js,.ts}`],
       migrations: [
         `./${folder}/shared/infra/typeorm/migrations/general/*{.js,.ts}`,
       ],
-      logging: true,
+      logging: process.env.NODE_ENV !== 'production',
     });
 
     await dataSource.initialize();

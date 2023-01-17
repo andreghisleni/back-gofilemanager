@@ -20,6 +20,20 @@ export class FileParentsRepository implements IFileParentsRepository {
     return findFileParent || undefined;
   }
 
+  public async findByParentId(id: string): Promise<FileParent | undefined> {
+    const findFileParent = await this.ormRepository.findOne({
+      where: { parent_id: id },
+    });
+    return findFileParent || undefined;
+  }
+
+  public async findByChildrenId(id: string): Promise<FileParent | undefined> {
+    const findFileParent = await this.ormRepository.findOne({
+      where: { children_id: id },
+    });
+    return findFileParent || undefined;
+  }
+
   public async findAll(): Promise<FileParent[]> {
     const findFileParents = await this.ormRepository.find();
     return findFileParents;

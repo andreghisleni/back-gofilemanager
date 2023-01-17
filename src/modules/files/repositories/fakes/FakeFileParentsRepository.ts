@@ -17,6 +17,20 @@ export class FakeFileParentsRepository implements IFileParentsRepository {
     return findFileParent;
   }
 
+  public async findByParentId(id: string): Promise<FileParent | undefined> {
+    const findFileParent = this.fileParents.find(
+      fileParent => fileParent.parent_id === id,
+    );
+    return findFileParent;
+  }
+
+  public async findByChildrenId(id: string): Promise<FileParent | undefined> {
+    const findFileParent = this.fileParents.find(
+      fileParent => fileParent.children_id === id,
+    );
+    return findFileParent;
+  }
+
   public async findAll(): Promise<FileParent[]> {
     const findFileParents = this.fileParents;
     return findFileParents;

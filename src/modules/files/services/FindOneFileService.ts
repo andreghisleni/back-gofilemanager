@@ -1,5 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
+import { AppError } from '@shared/errors/AppError';
+
 import { File } from '../infra/typeorm/entities/File';
 import { IFilesRepository } from '../repositories/IFilesRepository';
 
@@ -19,7 +21,7 @@ export class FindOneFileService {
     const file = await this.filesRepository.findById(id);
 
     if (!file) {
-      throw new Error('File not found');
+      throw new AppError('File not found');
     }
 
     return file;

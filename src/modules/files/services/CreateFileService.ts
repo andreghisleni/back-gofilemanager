@@ -30,11 +30,11 @@ export class CreateFileService {
     @inject('ActionsRepository')
     private actionsRepository: IActionsRepository,
 
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
-
     @inject('FileParentsRepository')
     private fileParentsRepository: IFileParentsRepository,
+
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('StorageProvider')
     private storageProvider: IStorageProvider,
@@ -103,12 +103,12 @@ export class CreateFileService {
     });
 
     if (parent) {
+      await this.filesRepository.save(parent);
+
       await this.fileParentsRepository.create({
         children_id: file.id,
         parent_id: parent.id,
       });
-
-      await this.filesRepository.save(parent);
     }
 
     const newFileAlertTemplate = path.resolve(

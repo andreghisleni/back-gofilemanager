@@ -53,6 +53,9 @@ export class FilesRepository implements IFilesRepository {
         'parent.parent_file.to',
         'children.children_file.to',
       ],
+      order: {
+        created_at: 'DESC',
+      },
     });
     return findFiles;
   }

@@ -45,7 +45,7 @@ export const uploadConfig = {
   config: {
     disk: {},
     aws: {
-      bucket: 'app-go-barber-gas',
+      bucket: 'go-file-manager',
       region: 'us-east-2',
     },
   },
