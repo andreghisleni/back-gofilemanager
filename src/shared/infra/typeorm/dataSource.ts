@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 import { DataSource } from 'typeorm';
 
-const folder = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
+const folder = process.env.MODE === 'prod' ? 'dist' : 'src';
 
 // const ssl =
 //   process.env.NODE_ENV === 'production'
