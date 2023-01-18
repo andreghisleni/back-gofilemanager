@@ -66,7 +66,7 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_FOLDER }}
             yarn
-            yarn typeorm migration:run
+            node ./node_modules/typeorm/cli.js --dataSource ./dist/shared/infra/typeorm/dataSource.js migration:run
             pm2 restart ${{ secrets.PM2_NAME }}
 
       # Send message in telegram
