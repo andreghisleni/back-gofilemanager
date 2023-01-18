@@ -43,13 +43,14 @@ export class UsersRepository implements IUsersRepository {
     email,
     user: userName,
     password,
+    first_password,
   }: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create({
       name,
       email,
       user: userName,
-
       password,
+      first_password,
     });
 
     await this.ormRepository.save(user);

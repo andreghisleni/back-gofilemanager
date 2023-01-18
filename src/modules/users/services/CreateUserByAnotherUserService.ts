@@ -35,6 +35,7 @@ export class CreateUserByAnotherUserService {
       throw new AppError('Email address already used.');
     }
     const password = crypto.randomBytes(6).toString('hex');
+    console.log(password);
     const hashedPassword = await this.hashProvider.generateHash(password);
     const user = await this.usersRepository.create({
       name,
