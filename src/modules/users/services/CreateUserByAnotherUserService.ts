@@ -61,7 +61,7 @@ export class CreateUserByAnotherUserService {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          url: `${process.env.APP_WEB_ADM_URL}`,
+          url: `${process.env.APP_WEB_URL}`,
           user: email.split('@')[0],
           password,
         },
