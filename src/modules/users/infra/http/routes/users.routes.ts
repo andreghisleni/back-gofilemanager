@@ -1,6 +1,7 @@
 import { celebrate, Segments, Joi } from 'celebrate';
 import { Router } from 'express';
 
+import { ReSendUserController } from '../controllers/ReSendUserController';
 import { UserByotherUserController } from '../controllers/UserByotherUserController';
 import { UsersController } from '../controllers/UsersController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
@@ -8,6 +9,7 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 const usersRoutes = Router();
 const usersController = new UsersController();
 const userByOtherUserController = new UserByotherUserController();
+const reSendUserController = new ReSendUserController();
 
 usersRoutes.post(
   '/',
@@ -33,6 +35,17 @@ usersRoutes.post(
   }),
   ensureAuthenticated,
   userByOtherUserController.create,
+);
+
+usersRoutes.post(
+  '/new/:user_id/re-send',
+  celebrate({
+    [Segments.PARAMS]: {
+      user_id: Joi.string().uuid().required(),
+    },
+  }),
+  ensureAuthenticated,
+  reSendUserController.create,
 );
 usersRoutes.get('/', ensureAuthenticated, usersController.index);
 
